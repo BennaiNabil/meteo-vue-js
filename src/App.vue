@@ -20,6 +20,8 @@
         <div class="weather-box">
           <div class="temp"><i class="fas fa-thermometer-half"></i>{{ Math.round(meteo.main.temp) }}°C</div>
           <div class="wind"><i class="fas fa-wind"></i>{{ Math.round(3.6 * meteo.wind.speed) }} km/h</div>
+          <div class="sunrise"><i class="fas fa-sun"></i>{{ this.timeConverter(meteo.sys.sunrise) }}</div>
+          <div class="sunset"><i class="fas fa-moon"></i>{{ this.timeConverter(meteo.sys.sunset) }}</div>
           <div class="weather">
             {{ meteo.weather[0].description.charAt(0).toUpperCase() + meteo.weather[0].description.slice(1) }}
           </div>
@@ -79,6 +81,16 @@ export default {
       let mois = listeMois[d.getMonth()];
       let annee = d.getFullYear();
       return `${jour} ${date} ${mois} ${annee}`;
+    },
+    doubleDigit(d) {
+      return d < 9 ? '0' + d : d;
+    },
+    timeConverter(UNIX_timestamp) {
+
+      const a = new Date(UNIX_timestamp * 1000);
+      const hour = this.doubleDigit(a.getHours());
+      const min = this.doubleDigit(a.getMinutes());
+      return `${hour}:${min}`;
     }
   }
 }
@@ -188,6 +200,30 @@ main {
 }
 
 .weather-box .wind {
+  padding: 10px 25px;
+  color: #FFF;
+  font-size: 25px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  margin: 30px 0;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.weather-box .sunrise {
+  padding: 10px 25px;
+  color: #FFF;
+  font-size: 25px;
+  font-weight: 900;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  background-color: rgba(255, 255, 255, 0.25);
+  border-radius: 16px;
+  margin: 30px 0;
+  box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+}
+
+.weather-box .sunset {
   padding: 10px 25px;
   color: #FFF;
   font-size: 25px;
