@@ -70,17 +70,21 @@ export default {
   padding: 0;
   box-sizing: border-box;
 }
+
 body {
-  font-family: 'Brush Script MT', cursive;
+  font-family: 'montserrat', sans-serif;
 }
+
 #app {
-  background-image: url('./assets/froid-bg.jpg');
-  background-size: cover;
-  background-position: top;
-  transition: 0.4s;
+  background: #2980B9; /* fallback for old browsers */
+  background: -webkit-radial-gradient(#FFFFFF, #6DD5FA, #2980B9); /* Chrome 10-25, Safari 5.1-6 */
+  background: radial-gradient(#FFFFFF, #6DD5FA, #2980B9); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
+
 #app.chaud {
-  background-image: url('./assets/chaud-bg.jpg');
+  background: #F00; /* fallback for old browsers */
+  background: -webkit-radial-gradient(#FF6A00, #EE0979, #F00); /* Chrome 10-25, Safari 5.1-6 */
+  background: radial-gradient(#FF6A00, #EE0979, #F00); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 
 main {
