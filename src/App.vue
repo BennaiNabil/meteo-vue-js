@@ -7,6 +7,10 @@
                placeholder="Saisir la ville..."
                type="text"
                @keypress="getMeteoData">
+        <button class="minimal"
+                @click="getMeteoDataAtUserLocation">
+          <i aria-hidden="true" class="fa fa-map-marker icon-4x"></i>
+        </button>
       </div>
       <div v-if="typeof meteo.main != 'undefined'" class="weather-wrap">
         <div class="location-box">
@@ -46,6 +50,22 @@ export default {
             })
             .then(this.setResults);
       }
+    },
+    getMeteoDataAtUserLocation() {
+      navigator.geolocation.getCurrentPosition(
+          position => {
+            fetch(`${this.url_base}weather?lat=${position.coords.latitude}&lon=${position.coords.longitude}&units=metric&APPID=${this.api_key}&lang=fr`)
+                .then(response => {
+                  return response.json();
+                })
+                .then(this.setResults);
+            console.log(`Longitude : ${position.coords.latitude}`);
+            console.log(`Latitude : ${position.coords.longitude}`);
+          },
+          positionError => {
+            console.log(positionError.message);
+          }
+      );
     },
     setResults(results) {
       this.meteo = results;
@@ -96,6 +116,7 @@ main {
 .search-box {
   width: 100%;
   margin-bottom: 100px;
+  display: inline-flex;
 }
 
 .search-box .search-bar {
@@ -147,7 +168,6 @@ main {
 }
 
 .weather-box .temp {
-  /*display: inline-block;*/
   padding: 10px 25px;
   color: #FFF;
   font-size: 102px;
@@ -183,11 +203,34 @@ main {
   margin: 0 20px;
 }
 
-.hot {
-  background-color: orange;
+button.minimal {
+  background: #e3e3e3;
+  border: 1px solid #bbb;
+  border-radius: 3px;
+  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
+  box-shadow: inset 0 0 1px 1px #f6f6f6;
+  color: #333;
+  font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
+  padding: 8px 0 9px;
+  text-align: center;
+  text-shadow: 0 1px 0 #fff;
+  width: 150px;
+  margin: 0 10px;
 }
 
-.cold {
-  background-color: deepskyblue;
+button.minimal:hover {
+  background: #d9d9d9;
+  -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
+  box-shadow: inset 0 0 1px 1px #eaeaea;
+  color: #222;
+  cursor: pointer;
 }
+
+button.minimal:active {
+  background: #d0d0d0;
+  -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
+  box-shadow: inset 0 0 1px 1px #e3e3e3;
+  color: #000;
+}
+
 </style>
