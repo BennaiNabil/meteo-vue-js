@@ -23,30 +23,27 @@
 
         <div class="weather-box flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-2 lg:-mx-3 xl:-mx-2">
           <div
-              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
             <div class="temp">{{ Math.round(meteo.main.temp) }}°C</div>
           </div>
 
           <div
-              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
             <div class="wind"><i class="fas fa-wind"></i>{{ Math.round(3.6 * meteo.wind.speed) }} km/h</div>
 
           </div>
 
           <div
-              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
             <div class="sunrise"><i class="fas fa-sun"></i>{{ this.timeConverter(meteo.sys.sunrise) }}</div>
 
           </div>
 
           <div
-              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/4 xl:my-2 xl:px-2 xl:w-1/4">
             <div class="sunset"><i class="fas fa-moon"></i>{{ this.timeConverter(meteo.sys.sunset) }}</div>
 
           </div>
-
-        </div>
-        <div class="weather-box">
 
         </div>
       </div>
@@ -265,12 +262,7 @@ main {
 }
 
 button.minimal {
-  background: #e3e3e3;
-  border: 1px solid #bbb;
-  border-radius: 3px;
-  -webkit-box-shadow: inset 0 0 1px 1px #f6f6f6;
-  box-shadow: inset 0 0 1px 1px #f6f6f6;
-  color: #333;
+  background-color: rgba(255, 255, 255, 0.25);
   font: bold 12px/1 "helvetica neue", helvetica, arial, sans-serif;
   padding: 8px 0 9px;
   text-align: center;
@@ -279,24 +271,13 @@ button.minimal {
   margin: 0 10px;
 }
 
-button.minimal:hover {
-  background: #d9d9d9;
-  -webkit-box-shadow: inset 0 0 1px 1px #eaeaea;
-  box-shadow: inset 0 0 1px 1px #eaeaea;
-  color: #222;
-  cursor: pointer;
-}
-
-button.minimal:active {
-  background: #d0d0d0;
-  -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
-  box-shadow: inset 0 0 1px 1px #e3e3e3;
-  color: #000;
-}
-
-@media all and (max-width: 970px) {
-    .weather-box .temp{
-      font-size: 25px;
+@media all and (max-width: 768px) {
+    .weather-box .temp,
+    .weather-box .wind,
+    .weather-box .sunrise,
+    .weather-box .sunset
+    {
+      font-size: 35px;
     }
 }
 
