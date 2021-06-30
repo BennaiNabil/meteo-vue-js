@@ -15,16 +15,39 @@
       <div v-if="typeof meteo.main != 'undefined'" class="weather-wrap">
         <div class="location-box">
           <div class="location"><i class="fas fa-globe-africa"></i>{{ meteo.name }}, {{ meteo.sys.country }}</div>
-          <div class="date"><i class="fas fa-calendar-alt"></i>{{ dateBuilder() }}</div>
-        </div>
-        <div class="weather-box">
-          <div class="temp"><i class="fas fa-thermometer-half"></i>{{ Math.round(meteo.main.temp) }}°C</div>
-          <div class="wind"><i class="fas fa-wind"></i>{{ Math.round(3.6 * meteo.wind.speed) }} km/h</div>
-          <div class="sunrise"><i class="fas fa-sun"></i>{{ this.timeConverter(meteo.sys.sunrise) }}</div>
-          <div class="sunset"><i class="fas fa-moon"></i>{{ this.timeConverter(meteo.sys.sunset) }}</div>
           <div class="weather">
             {{ meteo.weather[0].description.charAt(0).toUpperCase() + meteo.weather[0].description.slice(1) }}
           </div>
+          <div class="date"><i class="fas fa-calendar-alt"></i>{{ dateBuilder() }}</div>
+        </div>
+
+        <div class="weather-box flex flex-wrap -mx-1 overflow-hidden sm:-mx-1 md:-mx-2 lg:-mx-3 xl:-mx-2">
+          <div
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+            <div class="temp">{{ Math.round(meteo.main.temp) }}°C</div>
+          </div>
+
+          <div
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+            <div class="wind"><i class="fas fa-wind"></i>{{ Math.round(3.6 * meteo.wind.speed) }} km/h</div>
+
+          </div>
+
+          <div
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+            <div class="sunrise"><i class="fas fa-sun"></i>{{ this.timeConverter(meteo.sys.sunrise) }}</div>
+
+          </div>
+
+          <div
+              class="my-1 px-1 w-full overflow-hidden sm:my-1 sm:px-1 md:my-2 md:px-2 md:w-1/2 lg:my-3 lg:px-3 lg:w-1/3 xl:my-2 xl:px-2 xl:w-1/4">
+            <div class="sunset"><i class="fas fa-moon"></i>{{ this.timeConverter(meteo.sys.sunset) }}</div>
+
+          </div>
+
+        </div>
+        <div class="weather-box">
+
         </div>
       </div>
     </main>
@@ -86,7 +109,6 @@ export default {
       return d < 9 ? '0' + d : d;
     },
     timeConverter(UNIX_timestamp) {
-
       const a = new Date(UNIX_timestamp * 1000);
       const hour = this.doubleDigit(a.getHours());
       const min = this.doubleDigit(a.getMinutes());
@@ -175,6 +197,15 @@ main {
   margin: auto 0;
 }
 
+.weather {
+  color: #FFF;
+  font-size: 32px;
+  font-weight: 700;
+  font-style: italic;
+  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
+  text-align: center;
+}
+
 .weather-box {
   text-align: center;
 }
@@ -182,7 +213,7 @@ main {
 .weather-box .temp {
   padding: 10px 25px;
   color: #FFF;
-  font-size: 102px;
+  font-size: 25px;
   font-weight: 900;
   text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
   background-color: rgba(255, 255, 255, 0.25);
@@ -191,13 +222,7 @@ main {
   box-shadow: 3px 6px rgba(0, 0, 0, 0.25);
 }
 
-.weather-box .weather {
-  color: #FFF;
-  font-size: 48px;
-  font-weight: 700;
-  font-style: italic;
-  text-shadow: 3px 6px rgba(0, 0, 0, 0.25);
-}
+
 
 .weather-box .wind {
   padding: 10px 25px;
@@ -267,6 +292,12 @@ button.minimal:active {
   -webkit-box-shadow: inset 0 0 1px 1px #e3e3e3;
   box-shadow: inset 0 0 1px 1px #e3e3e3;
   color: #000;
+}
+
+@media all and (max-width: 970px) {
+    .weather-box .temp{
+      font-size: 25px;
+    }
 }
 
 </style>
